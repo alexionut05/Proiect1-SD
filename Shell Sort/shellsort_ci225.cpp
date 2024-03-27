@@ -27,9 +27,11 @@
  *      1 / KN = KNUTH'S SEQUENCE
  *      2 / SW = SEDGEWICK'S SEQUENCE
  *      3 / CI220 = CIURA'S SEQUENCE (2.20 multiplier)
- *      4 / CI225 = CIURA'S SEQUENCE (2.25 multiplier)
- *      5 / CI225O = CIURA'S SEQUENCE (2.25 multiplier, forced odd)
- *      6 / CI235 = CIURA'S SEQUENCE (2.35 multiplier)
+ *      5 / CI220O = CIURA'S SEQUENCE (2.20 multiplier, forced odd)
+ *    > 6 / CI225 = CIURA'S SEQUENCE (2.25 multiplier)
+ *      7 / CI225O = CIURA'S SEQUENCE (2.25 multiplier, forced odd)
+ *      8 / CI235 = CIURA'S SEQUENCE (2.35 multiplier)
+ * 	9 / CI235O = CIURA'S SEQUENCE (2.35 multiplier, forced odd)
  */
 
 #include <fstream>
@@ -40,85 +42,21 @@ void GenerateGaps(const size_t &n, std::vector<long long> &gaps)
 {
 	std::vector<long long> Ciura = {1, 4, 10, 23, 57, 132, 301, 701, 1750};
 
-	long long gap;
-	
-	else if (option == "CI220" || option == "3")
-	{
-		for (size_t i = 0; i < Ciura.size(); i++)
-		{
-			if (Ciura[i] < n)
-			{
-				gaps.push_back(Ciura[i]);
-			}
+	for (size_t i = 0; i < Ciura.size(); i++) {
+		if (Ciura[i] < n) {
+			gaps.push_back(Ciura[i]);
 		}
-
-		gap = 2.20 * Ciura[Ciura.size() - 1];
-		while (gap < n)
-		{
-			gaps.push_back(gap);
-			gap = 2.20 * gap;
-		}
-
-		std::reverse(gaps.begin(), gaps.end());
 	}
-	else if (option == "CI225" || option == "4")
-	{
-		for (size_t i = 0; i < Ciura.size(); i++)
-		{
-			if (Ciura[i] < n)
-			{
-				gaps.push_back(Ciura[i]);
-			}
-		}
 
-		gap = 2.25 * Ciura[Ciura.size() - 1];
-		while (gap < n)
-		{
-			gaps.push_back(gap);
-			gap = 2.25 * gap;
-		}
-
-		std::reverse(gaps.begin(), gaps.end());
+	long long gap = 2.25 * Ciura[Ciura.size() - 1];
+	while (gap < n) {
+		gaps.push_back(gap);
+		gap = 2.25 * gap;
 	}
-	else if (option == "CI225O" || option == "5")
-	{
-		for (size_t i = 0; i < Ciura.size(); i++)
-		{
-			if (Ciura[i] < n)
-			{
-				gaps.push_back(Ciura[i]);
-			}
-		}
 
-		gap = 2.25 * Ciura[Ciura.size() - 1];
-		gap = (gap % 2 == 0) ? gap + 1 : gap;
-		while (gap < n)
-		{
-			gaps.push_back(gap);
-			gap = 2.25 * gap;
-		}
+	std::reverse(gaps.begin(), gaps.end());
 
-		std::reverse(gaps.begin(), gaps.end());
-	}
-	else if (option == "CI235" || option == "6")
-	{
-		for (size_t i = 0; i < Ciura.size(); i++)
-		{
-			if (Ciura[i] < n)
-			{
-				gaps.push_back(Ciura[i]);
-			}
-		}
-
-		gap = 2.35 * Ciura[Ciura.size() - 1];
-		while (gap < n)
-		{
-			gaps.push_back(gap);
-			gap = 2.35 * gap;
-		}
-
-		std::reverse(gaps.begin(), gaps.end());
-	}
+	return;
 }
 
 void RunShellSort(std::vector<float> &arr, const size_t &n)
