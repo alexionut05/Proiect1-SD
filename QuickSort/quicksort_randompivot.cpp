@@ -1,14 +1,6 @@
-#include <iostream>
 #include <vector>
 #include <fstream>
-#include <cstdlib>
-#include <ctime>
-#include <chrono>
 #include <random>
-#include <limits>
-
-std::ifstream fin("date.in");
-std::ofstream fout("date.out");
 
 int pivotrandom(int a,int b) {
     std::random_device rd;
@@ -47,8 +39,16 @@ std::vector<int> quicksort(std::vector<int>& arr)
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc != 3)
+    {
+        return 1;
+    }
+
+    std::ifstream fin(argv[1]);
+    std::ofstream fout(argv[2]);
+
     int n;
     fin>>n;
     std::vector<int> v;
@@ -72,5 +72,8 @@ int main()
     {
         fout << v[i] << " ";            ///afisare
     }
+
+    fin.close();
+    fout.close();
     return 0;
 }

@@ -1,6 +1,5 @@
-#include <iostream>
+#include <fstream>
 #include <vector>
-
 
 /**
 Mica introducere:
@@ -30,14 +29,15 @@ Mica introducere:
 std::vector<int> v;
 int n;
 
-void citire() {
-    std::cin >> n;
+void citire(char *filename) {
+    std::ifstream fin(filename);
+    fin >> n;
     int x;
     for(int i = 0; i < n; ++i) {
-        std::cin >> x;
+        fin >> x;
         v.push_back(x);
     }
-
+    fin.close();
 }
 
 
@@ -82,17 +82,30 @@ void heapsort(std::vector<int> &v, int n) {
 }
 
 
-void afisare(std::vector<int> v, int n) {
+void afisare(std::vector<int> v, int n, char *filename) {
+    std::ofstream fout(filename);
+
     for(int i = 0; i < n; ++i) {
-        std::cout << v[i] << " ";
+        fout << v[i] << " ";
     }
 
+    fout.close();
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    citire();
-    heapsort(v, n);
-    afisare(v, n);
+    if (argc != 3)
+    {
+        return 1;
+    }
+
+    citire(argv[1]);
+    try {
+        heapsort(v, n);
+    } catch (const std::exception &e) {
+        return -1;
+    }
+    
+    afisare(v, n, argv[2]);
     return 0;
 }

@@ -3,17 +3,16 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
-#include <iostream>
-std::ifstream fin("date.in");
-std::ofstream fout("date.out");
 
 int n, base;
 std::vector<int> v;
 
-void Afisare(int n, std::vector<int> v) {
+void Afisare(int n, std::vector<int> v, char *filename) {
+    std::ofstream fout(filename);
     for(int i = 0; i < n; ++i) {
         fout << v[i] << " ";
     }
+    fout.close();
 }
 
 // stim ca pentru fiecare cifra in parte vom face counting sort, deci trebuie sa stim numarul maxim de cifre
@@ -120,8 +119,12 @@ bool Sortat(int n, std::vector<int> v) {
     return 1;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    if(argc != 3) {
+        return 1;
+    }
 
+    std::ifstream fin(argv[1]);
     fin >> n >> base;
     int val;
     for(int i = 0; i < n; ++i) {
@@ -131,6 +134,13 @@ int main() {
     if(!Sortat(n, v)) {
         Radix_Sort(n, v, base);
     }
-    Afisare(n, v);
+
+    try {
+        Afisare(n, v, argv[2]);
+    } catch(std::exception& e) {
+        return -1;
+    }
+
+    fin.close();
     return 0;
 }

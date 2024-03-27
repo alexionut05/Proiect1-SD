@@ -110,7 +110,11 @@ int main(int argc, char *argv[])
 
 	ReadArray(array, n, argv[1]);
 
-	RunShellSort(array, n);
+	try {
+		RunShellSort(array, n);
+	} catch (const std::exception &e) {
+		return -1;
+	}
 
 	PrintArray(array, n, argv[2]);
 

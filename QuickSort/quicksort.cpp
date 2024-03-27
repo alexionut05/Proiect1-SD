@@ -1,8 +1,6 @@
-#include <iostream>
 #include <vector>
 #include <fstream>
-std::ifstream fin("date.in");
-std::ofstream fout("date.out");
+
 std::vector<int> quicksort(std::vector<int>& arr)
 {
     if (arr.size() <= 1)
@@ -33,18 +31,39 @@ std::vector<int> quicksort(std::vector<int>& arr)
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc != 3)
+    {
+        return 1;
+    }
+
+    std::ifstream fin(argv[1]);
+    std::ofstream fout(argv[2]);
+
     std::vector<int> v;
     int num;
+    int temp;
+    fin >> temp;
+
     while (fin >> num)
     {
         v.push_back(num);   ///input
     }
-    v = quicksort(v);   ///sortare
+
+    try {
+        v = quicksort(v);   ///sortare
+    } catch (std::exception& e) {
+        return -1;
+    }
+
     for (int i = 0; i < v.size(); i++)
     {
         fout << v[i] << " ";            ///afisare
     }
+
+    fin.close();
+    fout.close();
+
     return 0;
 }

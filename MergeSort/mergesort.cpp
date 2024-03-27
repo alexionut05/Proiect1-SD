@@ -1,10 +1,5 @@
-#include <iostream>
 #include <vector>
 #include <fstream>
-#include <chrono>   //librarie pt masurarea timpului
-
-std::ifstream fin("date.in");
-std::ofstream fout("date.out");
 
 void merge(std::vector<int>& v, int l, int m, int r) { //l si r sunt marginile, iar m e mijlocul
     int n1 = m - l + 1;
@@ -52,23 +47,40 @@ void mergesort(std::vector<int>& v, int l, int r) { //functia ce sorteaza propri
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        return 1;
+    }
+
+    std::ifstream fin(argv[1]);
+    std::ofstream fout(argv[2]);
+
     std::vector<int> v;
     int num;
+    int temp;
+    fin >> temp;
+
     while (fin >> num) {
         v.push_back(num);
     } //construiesc vectorul de sortat
 
-    auto start = std::chrono::high_resolution_clock::now(); // start timing
-    mergesort(v, 0, v.size() - 1); //apelez functia si incep sa cronometrez
-    auto end = std::chrono::high_resolution_clock::now(); // sfarsit timing
-    std::chrono::duration<double> duration = end - start; //timpul total
+    // auto start = std::chrono::high_resolution_clock::now(); // start timing
+    // auto end = std::chrono::high_resolution_clock::now(); // sfarsit timing
+    // std::chrono::duration<double> duration = end - start; //timpul total
+
+    try {
+        mergesort(v, 0, v.size() - 1);
+    } catch (const std::exception& e) {
+        return -1;
+    }
 
     for (int i = 0; i < v.size(); i++) {
         fout << v[i] << " ";
     } //afisare
 
-    std::cout << duration.count() << " seconds" << std::endl; //in cat timp a sortat
+    // std::cout << duration.count() << " seconds" << std::endl; //in cat timp a sortat
 
+    fin.close();
+    fout.close();
     return 0;
 }
