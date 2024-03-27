@@ -2,14 +2,14 @@
 #include <fstream>
 #include <random>
 
-int pivotrandom(int a,int b) {
+double pivotrandom(double a,double b) {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(a, b);
+    std::uniform_double_distribution<> dis(a, b);
     return dis(gen);
 }
 
-std::vector<int> quicksort(std::vector<int>& arr)
+std::vector<double> quicksort(std::vector<double>& arr)
 {
     if (arr.size() <= 1)
     {
@@ -17,10 +17,10 @@ std::vector<int> quicksort(std::vector<int>& arr)
     }
     else
     {
-        int pivot = pivotrandom(0,arr.size()-1);  ///am ales un pivot random, o sa schimbam asta sau facem mai multe teste cu asta
-        std::vector<int> left;
-        std::vector<int> right;
-        for (int i = 1; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
+        double pivot = pivotrandom(0,arr.size()-1);  ///am ales un pivot random, o sa schimbam asta sau facem mai multe teste cu asta
+        std::vector<double> left;
+        std::vector<double> right;
+        for (long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
         {
             if (arr[i] < pivot)
             {
@@ -51,8 +51,8 @@ int main(int argc, char *argv[])
 
     int n;
     fin>>n;
-    std::vector<int> v;
-    int num;
+    std::vector<double> v;
+    long long num;
     while (fin >> num)
     {
         v.push_back(num);   ///input
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    for (int i = 0; i < v.size(); i++)
+    for (long long i = 0; i < v.size(); i++)
     {
         fout << v[i] << " ";            ///afisare
     }
