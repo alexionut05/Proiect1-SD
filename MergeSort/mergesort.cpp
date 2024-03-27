@@ -1,11 +1,11 @@
 #include <vector>
 #include <fstream>
 
-void merge(std::vector<int>& v, int l, int m, int r) { //l si r sunt marginile, iar m e mijlocul
+void merge(std::vector<double>& v, int l, int m, int r) { //l si r sunt marginile, iar m e mijlocul
     int n1 = m - l + 1;
     int n2 = r - m;         //am impartit la mijloc vectorul de sortat
-    std::vector<int> L(n1);
-    std::vector<int> R(n2);
+    std::vector<double> L(n1);
+    std::vector<double> R(n2);
     for (int i = 0; i < n1; i++) {
         L[i] = v[l + i];
     }
@@ -38,7 +38,7 @@ void merge(std::vector<int>& v, int l, int m, int r) { //l si r sunt marginile, 
     }
 }
 
-void mergesort(std::vector<int>& v, int l, int r) { //functia ce sorteaza propriu-zis
+void mergesort(std::vector<double>& v, int l, int r) { //functia ce sorteaza propriu-zis
     if (l < r) {    //conditie de valabilitate (daca nu e asa, n-am ce sa sortez)
         int m = (r + l) / 2;    //creez mijlocul
         mergesort(v, l, m); //sortez jumatatea din stanga a vectorului
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
     std::ifstream fin(argv[1]);
     std::ofstream fout(argv[2]);
 
-    std::vector<int> v;
+    std::vector<double> v;
     int num;
     int temp;
     fin >> temp;
