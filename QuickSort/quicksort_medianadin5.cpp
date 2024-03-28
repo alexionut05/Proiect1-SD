@@ -27,7 +27,7 @@ std::vector<double> quicksort(std::vector<double>& arr)
         pivot = medianadincinci(first, middle, last, second, fourth); // Alegerea pivotului folosind mediana din 5
         std::vector<double> left;
         std::vector<double> right;
-        for (long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
+        for (unsigned long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
         {
             if (arr[i] < pivot)
             {
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    for (long long i = 0; i < v.size(); i++)
+    for (unsigned long long i = 0; i < v.size(); i++)
     {
         fout << v[i] << " ";            ///afisare
     }
