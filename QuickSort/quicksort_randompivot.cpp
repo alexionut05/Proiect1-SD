@@ -1,79 +1,53 @@
 #include <vector>
 #include <fstream>
 #include <random>
+std::ifstream fin("date.in");
+std::ofstream fout("date.out");
 
-double pivotrandom(double a,double b) {
+long long pivotrandom(long long a,long long b) {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<double> dis(a, b);
+    std::uniform_int_distribution<long long> dis(a, b);
     return dis(gen);
 }
+long long partition(std::vector<double>& arr, long long low, long long high) {
+    double pivot = arr[pivotrandom(low, high)];  //alegere pivot random
+    long long i = low - 1;
 
-std::vector<double> quicksort(std::vector<double>& arr)
-{
-    if (arr.size() <= 1)
-    {
-        return arr;
-    }
-    else
-    {
-        double pivot = pivotrandom(0,arr.size()-1);  ///am ales un pivot random, o sa schimbam asta sau facem mai multe teste cu asta
-        std::vector<double> left;
-        std::vector<double> right;
-        for (unsigned long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
-        {
-            if (arr[i] < pivot)
-            {
-                left.push_back(arr[i]);
-            }
-            else
-            {
-                right.push_back(arr[i]);
-            }
+    for (long long j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;  // Incrementez indexul daca elementul e mai mic decat pivotul
+            std::swap(arr[i], arr[j]);
         }
-        left = quicksort(left);     ///apelez recursiv functia pentru a sorta cele doua subsiruri
-        right = quicksort(right);
-        left.push_back(pivot);
-        left.insert(left.end(), right.begin(), right.end());    ///reconstruiesc vectorul pentru a il afisa
-        return left;
+    }
+
+    std::swap(arr[i + 1], arr[high]);
+
+    return i + 1;  // returnez unde fac partitionarea
+}
+
+void quicksort(std::vector<double>& arr, long long low, long long high) {
+    if (low < high) {
+        long long part = partition(arr, low, high);
+
+        // Recursively sort elements before and after partition
+        quicksort(arr, low, part - 1);
+        quicksort(arr, part + 1, high);
     }
 }
 
-int main(int argc, char *argv[])
-{
-    if (argc != 3)
-    {
-        return 1;
-    }
-
-    std::ifstream fin(argv[1]);
-    std::ofstream fout(argv[2]);
-
-    int n;
-    fin>>n;
-    std::vector<double> v;
+int main() {
+    std::vector<double> arr;
     double num;
-    while (fin >> num)
-    {
-        v.push_back(num);   ///input
-    }
-    //auto start = std::chrono::high_resolution_clock::now();
-    //std::cout<<pivotrandom(v,0,v.size())<<std::endl;
-    //auto end = std::chrono::high_resolution_clock::now();
-    //std::chrono::duration<double> duration = end - start;
-    //std::cout << "Time taken: " << duration.count() << " seconds" << std::endl;
-    try {
-        v = quicksort(v);
-    } catch (const std::exception& e) {
-        return -1;
+    while(fin >> num)
+        arr.push_back(num);
+
+    quicksort(arr, 0, arr.size() - 1);
+
+    for (double x : arr) {
+        fout << x << " ";
     }
 
-    for (unsigned long long i = 0; i < v.size(); i++)
-    {
-        fout << v[i] << " ";            ///afisare
-    }
-
-    fin.close();
-    fout.close();
     return 0;
 }
+
