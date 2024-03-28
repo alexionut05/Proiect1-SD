@@ -29,7 +29,7 @@ long long partition(std::vector<double>& arr, long long low, long long high) {
             std::swap(arr[i], arr[j]);
         }
     }
-    std::swap(arr[i + 1], arr[high]);     //de ce nu merge asta?????
+    std::swap(arr[i + 1], arr[high]);    
 
     return i + 1;  // returnez unde fac partitionarea
 }
@@ -51,8 +51,6 @@ int main() {
     quicksort(arr, 0, arr.size() - 1);
     for (long long i=0;i<arr.size();i++) {
         fout << arr[i]<<" ";
-        //if(arr[i]>arr[i+1])
-            //fout<<"esti prost"<<std::endl;
     }
     return 0;
 }
