@@ -12,7 +12,7 @@ std::vector<double> quicksort(std::vector<double>& arr)
         double pivot = arr[arr.size()/3];  ///am ales un pivot random, o sa schimbam asta sau facem mai multe teste cu asta
         std::vector<double> left;
         std::vector<double> right;
-        for (long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
+        for (unsigned long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
         {
             if (arr[i] < pivot)
             {
@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
     std::ofstream fout(argv[2]);
 
     std::vector<double> v;
-    int num;
-    int temp;
+    double num;
+    double temp;
     fin >> temp;
 
     while (fin >> num)
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    for (long long i = 0; i < v.size(); i++)
+    for (unsigned long long i = 0; i < v.size(); i++)
     {
         fout << v[i] << " ";            ///afisare
     }
