@@ -1,84 +1,60 @@
+
 #include <vector>
 #include <fstream>
-#include <algorithm>
-double median(std::vector<double>& arr) {
-    std::sort(arr.begin(), arr.end());
-    return arr[arr.size() / 2];
-}
 
-double medianadincinci(double a, double b, double c, double d, double e) {
-    std::vector<double> arr = {a, b, c, d, e};
-    return median(arr);
+std::ifstream fin("date.in");
+std::ofstream fout("date.out");
+
+long long medianadincinci(std::vector<double>& arr, long long low, long long high) {
+    long long n = high - low + 1;
+    long long mid = low + n / 2;
+
+    // Indices for the five elements
+    long long a = low, b = low + 1, c = mid, d = high - 1, e = high;
+
+    // Sort the five elements
+    if (arr[a] > arr[b]) std::swap(arr[a], arr[b]);
+    if (arr[c] > arr[d]) std::swap(arr[c], arr[d]);
+    if (arr[a] > arr[c]) std::swap(arr[a], arr[c]);
+    if (arr[b] > arr[d]) std::swap(arr[b], arr[d]);
+    if (arr[b] > arr[c]) std::swap(arr[b], arr[c]);
+
+    return c; // Return the index of the median
 }
-std::vector<double> quicksort(std::vector<double>& arr)
-{
-    if (arr.size() <= 1)
-    {
-        return arr;
-    }
-    else
-    {
-        double pivot;
-        double first = arr[0];
-        double middle = arr[arr.size() / 2];
-        double last = arr[arr.size() - 1];
-        double second = arr[arr.size() / 4];
-        double fourth = arr[arr.size() / 4 * 3];
-        pivot = medianadincinci(first, middle, last, second, fourth); // Alegerea pivotului folosind mediana din 5
-        std::vector<double> left;
-        std::vector<double> right;
-        for (unsigned long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
-        {
-            if (arr[i] < pivot)
-            {
-                left.push_back(arr[i]);
-            }
-            else
-            {
-                right.push_back(arr[i]);
-            }
+long long partition(std::vector<double>& arr, long long low, long long high) {
+    long long pivotindex = medianadincinci(arr, low, high);
+    double pivot = arr[pivotindex];  //alegere pivot
+    std::swap(arr[pivotindex], arr[high]);  //l am mutat ultimul ca altfel nush
+    long long i = low - 1;
+
+    for (long long j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;  // Incrementez indexul daca elementul e mai mic decat pivotul
+            std::swap(arr[i], arr[j]);
         }
-        left = quicksort(left);     ///apelez recursiv functia pentru a sorta cele doua subsiruri
-        right = quicksort(right);
-        left.push_back(pivot);
-        left.insert(left.end(), right.begin(), right.end());    ///reconstruiesc vectorul pentru a il afisa
-        return left;
+    }
+    std::swap(arr[i + 1], arr[high]);     
+
+    return i + 1;  // returnez unde fac partitionarea
+}
+
+void quicksort(std::vector<double>& arr, long long low, long long high) {
+    if (low < high) {
+        long long part = partition(arr, low, high);
+
+        quicksort(arr, low, part-1);
+        quicksort(arr, part+1, high);
     }
 }
 
-int main(int argc, char *argv[])
-{
-    if (argc != 3)
-    {
-        return 1;
-    }
-
-    std::ifstream fin(argv[1]);
-    std::ofstream fout(argv[2]);
-
-    std::vector<double> v;
+int main() {
+    std::vector<double> arr;
     double num;
-    double temp;
-    fin >> temp;
-
-    while (fin >> num)
-    {
-        v.push_back(num);   ///input
+    while(fin >> num)
+        arr.push_back(num);
+    quicksort(arr, 0, arr.size() - 1);
+    for (long long i=0;i<arr.size();i++) {
+        fout << arr[i]<<" ";
     }
-
-    try {
-        v = quicksort(v);   ///sortare
-    } catch (std::exception& e) {
-        return -1;
-    }
-
-    for (unsigned long long i = 0; i < v.size(); i++)
-    {
-        fout << v[i] << " ";            ///afisare
-    }
-
-    fin.close();
-    fout.close();
-
     return 0;
 }
