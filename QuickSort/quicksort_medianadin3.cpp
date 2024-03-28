@@ -1,10 +1,11 @@
+
 #include <vector>
 #include <fstream>
 #include <random>
 std::ifstream fin("date.in");
 std::ofstream fout("date.out");
 
-long long medianadintrei(std::vector<double>& arr, long long low, long long high) {
+long long  medianadintrei(std::vector<double>& arr, long long low, long long high) {
     long long mid = low + (high - low) / 2;
 
     //gasesc mijlocul dintre cele 3 valori
@@ -23,13 +24,13 @@ long long partition(std::vector<double>& arr, long long low, long long high) {
     long long i = low - 1;
 
     for (long long j = low; j < high; j++) {
-        if (arr[j] <= pivot) {
+        if (arr[j] < pivot) {
             i++;  // Incrementez indexul daca elementul e mai mic decat pivotul
             std::swap(arr[i], arr[j]);
         }
     }
 
-    std::swap(arr[i + 1], arr[high]);
+    std::swap(arr[i + 1], arr[pivotindex]);
 
     return i + 1;  // returnez unde fac partitionarea
 }
@@ -58,4 +59,3 @@ int main() {
 
     return 0;
 }
-
