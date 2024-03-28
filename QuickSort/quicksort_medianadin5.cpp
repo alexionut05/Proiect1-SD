@@ -1,5 +1,6 @@
 #include <vector>
 #include <fstream>
+#include <algorithm>
 double median(std::vector<double>& arr) {
     std::sort(arr.begin(), arr.end());
     return arr[arr.size() / 2];
