@@ -9,7 +9,7 @@ long long pivotrandom(long long a,long long b) {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<long long> dis(a, b);
     return dis(gen);
-}
+} //this is bullshit
 long long partition(std::vector<double>& arr, long long low, long long high) {
     double pivot = arr[pivotrandom(low, high)];  //alegere pivot random
     long long i = low - 1;
