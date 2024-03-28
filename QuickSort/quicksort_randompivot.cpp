@@ -5,7 +5,7 @@
 double pivotrandom(double a,double b) {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_double_distribution<> dis(a, b);
+    std::uniform_real_distribution<double> dis(a, b);
     return dis(gen);
 }
 
@@ -20,7 +20,7 @@ std::vector<double> quicksort(std::vector<double>& arr)
         double pivot = pivotrandom(0,arr.size()-1);  ///am ales un pivot random, o sa schimbam asta sau facem mai multe teste cu asta
         std::vector<double> left;
         std::vector<double> right;
-        for (long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
+        for (unsigned long long i = 0; i < arr.size(); i++)    ///impart vectorul initial in doua astfel incat elementele din left sa fie mai mici decat pivotul si din right mai mare decat pivotul
         {
             if (arr[i] < pivot)
             {
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    for (long long i = 0; i < v.size(); i++)
+    for (unsigned long long i = 0; i < v.size(); i++)
     {
         fout << v[i] << " ";            ///afisare
     }
