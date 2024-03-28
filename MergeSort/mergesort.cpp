@@ -6,10 +6,10 @@ void merge(std::vector<double>& v, unsigned long long l, unsigned long long m, u
     unsigned long long n2 = r - m;         //am impartit la mijloc vectorul de sortat
     std::vector<double> L(n1);
     std::vector<double> R(n2);
-    for (int i = 0; i < n1; i++) {
+    for (unsigned long long i = 0; i < n1; i++) {
         L[i] = v[l + i];
     }
-    for (int j = 0; j < n2; j++) {
+    for (unsigned long long j = 0; j < n2; j++) {
         R[j] = v[m + 1 + j];
     }                           //am construit doi vectori (L-left si R-right) pe care ii voi sorta)
     //algoritm de interclasare:
@@ -38,9 +38,9 @@ void merge(std::vector<double>& v, unsigned long long l, unsigned long long m, u
     }
 }
 
-void mergesort(std::vector<double>& v, int l, int r) { //functia ce sorteaza propriu-zis
+void mergesort(std::vector<double>& v, unsigned long long l, unsigned long long r) { //functia ce sorteaza propriu-zis
     if (l < r) {    //conditie de valabilitate (daca nu e asa, n-am ce sa sortez)
-        int m = (r + l) / 2;    //creez mijlocul
+        unsigned long long m = (r + l) / 2;    //creez mijlocul
         mergesort(v, l, m); //sortez jumatatea din stanga a vectorului
         mergesort(v, m + 1, r); //sortez jumatatea din dreapta a vectorului
         merge(v, l, m, r);  //combin cele doua subsiruri cu ajutorul interclasarii pentru a obtine vectorul sortat, caruia ii dau si output
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     std::ofstream fout(argv[2]);
 
     std::vector<double> v;
-    int num;
+    unsigned long long num;
     int temp;
     fin >> temp;
 
