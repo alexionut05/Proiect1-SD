@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     int n;
     fin>>n;
     std::vector<double> v;
-    long long num;
+    double num;
     while (fin >> num)
     {
         v.push_back(num);   ///input
