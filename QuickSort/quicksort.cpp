@@ -24,7 +24,6 @@ void quicksort(std::vector<double>& arr, long long low, long long high) {
     if (low < high) {
         long long part = partition(arr, low, high);
 
-        // Recursively sort elements before and after partition
         quicksort(arr, low, part - 1);
         quicksort(arr, part + 1, high);
     }
