@@ -25,16 +25,16 @@ void PrintArray(std::vector<float> &arr, size_t &n, char *output_file)
 	out.close();
 	return;
 }
-int main()
+int main(int argc, char *argv[])
 {
 	size_t n;
 	std::vector<float> arr;
 	ReadArray(arr, n, argv[1]);
 	try {
-		sort(arr, arr + n);
+		sort(arr.begin(), arr.end());
 	} catch (const std::exception &e) {
 		return -1;
 	}
-    PrintArray(array, n, argv[2]);
+	PrintArray(arr, n, argv[2]);
 	return 0;
 }
