@@ -1,9 +1,9 @@
 #include <vector>
 #include <fstream>
 
-void merge(std::vector<double>& v, int l, int m, int r) { //l si r sunt marginile, iar m e mijlocul
-    int n1 = m - l + 1;
-    int n2 = r - m;         //am impartit la mijloc vectorul de sortat
+void merge(std::vector<double>& v, unsigned long long l, unsigned long long m, unsigned long long r) { //l si r sunt marginile, iar m e mijlocul
+    unsigned long long n1 = m - l + 1;
+    unsigned long long n2 = r - m;         //am impartit la mijloc vectorul de sortat
     std::vector<double> L(n1);
     std::vector<double> R(n2);
     for (int i = 0; i < n1; i++) {
@@ -13,9 +13,9 @@ void merge(std::vector<double>& v, int l, int m, int r) { //l si r sunt marginil
         R[j] = v[m + 1 + j];
     }                           //am construit doi vectori (L-left si R-right) pe care ii voi sorta)
     //algoritm de interclasare:
-    int i = 0;
-    int j = 0;
-    int k = l;
+    unsigned long long i = 0;
+    unsigned long long j = 0;
+    unsigned long long k = l;
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
             v[k] = L[i];        //daca elementul la care am ajuns in stanga e mai mic decat cel din dreapta, il voi pune in vecotrul final pe cel din stanga
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    for (int i = 0; i < v.size(); i++) {
+    for (unsigned long long i = 0; i < v.size(); i++) {
         fout << v[i] << " ";
     } //afisare
 
