@@ -23,7 +23,7 @@ Fisierul numgen.cpp va genera numerele, utliziarea lui este documentat in cod.
 
 Am generat ~2000 fisiere de input, pe care le-am folosit pe cei 6 algoritmi (la radix, pe ambele variante), dar si pe sortarile native din C si C++.
 
-Spreadsheet-ul cu testele: https://shorturl.at/jsCKO
+Spreadsheet-ul cu testele (timpii sunt in secunde): https://shorturl.at/jsCKO
 
 Din constrangeri de spatiu, nu am putut sa includem si testele, dar recomandam generarea astfel, in paritate cu datele din spreadsheet (se va modifica tipul de distributie si range-ul):
 
