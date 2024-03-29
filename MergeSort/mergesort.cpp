@@ -1,11 +1,11 @@
 #include <vector>
 #include <fstream>
 
-void merge(std::vector<double>& v, unsigned long long l, unsigned long long m, unsigned long long r) { //l si r sunt marginile, iar m e mijlocul
+void merge(std::vector<long long>& v, unsigned long long l, unsigned long long m, unsigned long long r) { //l si r sunt marginile, iar m e mijlocul
     unsigned long long n1 = m - l + 1;
     unsigned long long n2 = r - m;         //am impartit la mijloc vectorul de sortat
-    std::vector<double> L(n1);
-    std::vector<double> R(n2);
+    std::vector<long long> L(n1);
+    std::vector<long long> R(n2);
     for (unsigned long long i = 0; i < n1; i++) {
         L[i] = v[l + i];
     }
@@ -38,7 +38,7 @@ void merge(std::vector<double>& v, unsigned long long l, unsigned long long m, u
     }
 }
 
-void mergesort(std::vector<double>& v, unsigned long long l, unsigned long long r) { //functia ce sorteaza propriu-zis
+void mergesort(std::vector<long long>& v, unsigned long long l, unsigned long long r) { //functia ce sorteaza propriu-zis
     if (l < r) {    //conditie de valabilitate (daca nu e asa, n-am ce sa sortez)
         unsigned long long m = (r + l) / 2;    //creez mijlocul
         mergesort(v, l, m); //sortez jumatatea din stanga a vectorului
@@ -55,8 +55,8 @@ int main(int argc, char *argv[]) {
     std::ifstream fin(argv[1]);
     std::ofstream fout(argv[2]);
 
-    std::vector<double> v;
-    unsigned long long num;
+    std::vector<long long> v;
+    long long num;
     int temp;
     fin >> temp;
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
 
     // auto start = std::chrono::high_resolution_clock::now(); // start timing
     // auto end = std::chrono::high_resolution_clock::now(); // sfarsit timing
-    // std::chrono::duration<double> duration = end - start; //timpul total
+    // std::chrono::duration<long long> duration = end - start; //timpul total
 
     try {
         mergesort(v, 0, v.size() - 1);

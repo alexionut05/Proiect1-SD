@@ -26,13 +26,13 @@ Mica introducere:
 
 */
 
-std::vector<double> v;
+std::vector<long long> v;
 unsigned long long n;
 
 void citire(char *filename) {
     std::ifstream fin(filename);
     fin >> n;
-    double x;
+    long long x;
     for(unsigned long long i = 0; i < n; ++i) {
         fin >> x;
         v.push_back(x);
@@ -41,7 +41,7 @@ void citire(char *filename) {
 }
 
 
-void heapify(std::vector<double> &v, unsigned long long n, int root_pos) {
+void heapify(std::vector<long long> &v, unsigned long long n, int root_pos) {
     // calculam indici celor 2 fii
     int left = 2 * root_pos + 1;
     int right = 2 * root_pos + 2;
@@ -64,7 +64,7 @@ void heapify(std::vector<double> &v, unsigned long long n, int root_pos) {
     }
 }
 
-void heapsort(std::vector<double> &v, unsigned long long n) {
+void heapsort(std::vector<long long> &v, unsigned long long n) {
     // transformam arborele binar intr-un max-heap
     // pornesc de la radacina fiecarui subarbore si tot urc in inaltime
     for(int i = n / 2 - 1; i >= 0; --i) {
@@ -82,7 +82,7 @@ void heapsort(std::vector<double> &v, unsigned long long n) {
 }
 
 
-void afisare(std::vector<double
+void afisare(std::vector<long long
 > v, unsigned long long n, char *filename) {
     std::ofstream fout(filename);
 

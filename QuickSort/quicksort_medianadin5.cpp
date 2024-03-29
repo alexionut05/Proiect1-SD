@@ -5,7 +5,7 @@
 std::ifstream fin("date.in");
 std::ofstream fout("date.out");
 
-long long medianadincinci(std::vector<double>& arr, long long low, long long high) {
+long long medianadincinci(std::vector<long long>& arr, long long low, long long high) {
     long long n = high - low + 1;
     long long mid = low + n / 2;
 
@@ -21,9 +21,9 @@ long long medianadincinci(std::vector<double>& arr, long long low, long long hig
 
     return c; // Return the index of the median
 }
-long long partition(std::vector<double>& arr, long long low, long long high) {
+long long partition(std::vector<long long>& arr, long long low, long long high) {
     long long pivotindex = medianadincinci(arr, low, high);
-    double pivot = arr[pivotindex];  //alegere pivot
+    long long pivot = arr[pivotindex];  //alegere pivot
     std::swap(arr[pivotindex], arr[high]);  //l am mutat ultimul ca altfel nush
     long long i = low - 1;
 
@@ -38,7 +38,7 @@ long long partition(std::vector<double>& arr, long long low, long long high) {
     return i + 1;  // returnez unde fac partitionarea
 }
 
-void quicksort(std::vector<double>& arr, long long low, long long high) {
+void quicksort(std::vector<long long>& arr, long long low, long long high) {
     if (low < high) {
         long long part = partition(arr, low, high);
 
@@ -48,8 +48,8 @@ void quicksort(std::vector<double>& arr, long long low, long long high) {
 }
 
 int main() {
-    std::vector<double> arr;
-    double num;
+    std::vector<long long> arr;
+    long long num;
     while(fin >> num)
         arr.push_back(num);
     quicksort(arr, 0, arr.size() - 1);

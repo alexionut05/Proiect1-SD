@@ -2,13 +2,13 @@
 #include <vector>
 #include <cmath>
 
-void RunInsertionSort(std::vector<double> &arr, const size_t &n)
+void RunInsertionSort(std::vector<long long> &arr, const size_t &n)
 {
-	double cur_item;
+	long long cur_item;
 
-	for (size_t i = 0; i < n; ++i) {
+	for (size_t i = 1; i < n; ++i) {
 		cur_item = arr[i];
-		int j = static_cast<int>(i);
+		int j = static_cast<int>(i) - 1;
 
 		while (j >= 0 && arr[j] > cur_item) {
 			arr[j + 1] = arr[j];
@@ -21,14 +21,14 @@ void RunInsertionSort(std::vector<double> &arr, const size_t &n)
 	return;
 }
 
-void RunBucketSort(std::vector<double> &arr, const size_t &n, const double &max)
+void RunBucketSort(std::vector<long long> &arr, const size_t &n, const long long &max)
 {
 	// Create sqrt(n) empty buckets
 	int bucket_count = static_cast<int>(sqrt(n));
-	std::vector<double> buckets[bucket_count];
+	std::vector<long long> buckets[bucket_count];
 
 	// Create index multiplier
-	const double multiplier = static_cast<double>(bucket_count) / max;
+	const long long multiplier = static_cast<long long>(bucket_count) / max;
 
 	// Distribute elements into buckets
 	for (size_t i = 0; i < n; ++i) {
@@ -55,15 +55,15 @@ void RunBucketSort(std::vector<double> &arr, const size_t &n, const double &max)
 	return;
 }
 
-void SortArray(std::vector<double> &arr, const size_t &n)
+void SortArray(std::vector<long long> &arr, const size_t &n)
 {
 	// Initialize two arrays for both positive and negative numbers
-	std::vector<double> negative_array;
-	std::vector<double> positive_array;
+	std::vector<long long> negative_array;
+	std::vector<long long> positive_array;
 
-	double min = 0.f;
-	double max = 0.f;
-	double x;
+	long long min = 0.f;
+	long long max = 0.f;
+	long long x;
 
 	// Distribute the array elements into the two new arrays
 	for (size_t i = 0; i < n; ++i) {
@@ -100,7 +100,7 @@ void SortArray(std::vector<double> &arr, const size_t &n)
 	return;
 }
 
-void ReadArray(std::vector<double> &arr, size_t &n, char *input_file)
+void ReadArray(std::vector<long long> &arr, size_t &n, char *input_file)
 {
 	std::ifstream in(input_file);
 
@@ -115,7 +115,7 @@ void ReadArray(std::vector<double> &arr, size_t &n, char *input_file)
 	return;
 }
 
-void PrintArray(std::vector<double> &arr, size_t &n, char *output_file)
+void PrintArray(std::vector<long long> &arr, size_t &n, char *output_file)
 {
 	std::ofstream out(output_file);
 
@@ -129,12 +129,12 @@ void PrintArray(std::vector<double> &arr, size_t &n, char *output_file)
 
 int main(int argc, char *argv[])
 {
-	if (argc != 3) {
-		return 1;
-	}
+	// if (argc != 3) {
+	// 	return 1;
+	// }
 	
 	size_t n;
-	std::vector<double> array;
+	std::vector<long long> array;
 
 	ReadArray(array, n, argv[1]);
 

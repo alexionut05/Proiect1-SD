@@ -62,7 +62,7 @@ void GenerateGaps(const size_t &n, std::vector<long long> &gaps)
 	return;
 }
 
-void RunShellSort(std::vector<double> &arr, const size_t &n)
+void RunShellSort(std::vector<long long> &arr, const size_t &n)
 {
 	std::vector<long long> gaps;
 	GenerateGaps(n, gaps);
@@ -72,7 +72,7 @@ void RunShellSort(std::vector<double> &arr, const size_t &n)
 	for (size_t i = 0; i < gaps_count; ++i) {
 		long long gap = gaps[i];
 		for (size_t j = gap; j < n; ++j) {
-			double temp = arr[j];
+			long long temp = arr[j];
 			long long k;
 			for (k = j; k >= gap && arr[k - gap] > temp; k -= gap) {
 				arr[k] = arr[k - gap];
@@ -84,7 +84,7 @@ void RunShellSort(std::vector<double> &arr, const size_t &n)
 	return;
 }
 
-void ReadArray(std::vector<double> &arr, size_t &n, char *input_file)
+void ReadArray(std::vector<long long> &arr, size_t &n, char *input_file)
 {
 	std::ifstream in(input_file);
 
@@ -100,7 +100,7 @@ void ReadArray(std::vector<double> &arr, size_t &n, char *input_file)
 	return;
 }
 
-void PrintArray(std::vector<double> &arr, size_t &n, char *output_file)
+void PrintArray(std::vector<long long> &arr, size_t &n, char *output_file)
 {
 	std::ofstream out(output_file);
 
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 	}
 
 	size_t n;
-	std::vector<double> array;
+	std::vector<long long> array;
 
 	ReadArray(array, n, argv[1]);
 
