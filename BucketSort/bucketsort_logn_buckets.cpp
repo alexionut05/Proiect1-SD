@@ -28,7 +28,8 @@ void RunBucketSort(std::vector<long long> &arr, const size_t &n, const long long
 	std::vector<long long> buckets[bucket_count];
 
 	// Create index multiplier
-	const long long multiplier = static_cast<long long>(bucket_count) / max;
+	const double maxf = max;
+	const double multiplier = static_cast<long long>(bucket_count) / maxf;
 
 	// Distribute elements into buckets
 	for (size_t i = 0; i < n; ++i) {

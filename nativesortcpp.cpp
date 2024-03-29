@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-void ReadArray(std::vector<float> &arr, size_t &n, char *input_file)
+void ReadArray(std::vector<long long> &arr, size_t &n, char *input_file)
 {
 	std::ifstream in(input_file);
 
@@ -14,7 +14,7 @@ void ReadArray(std::vector<float> &arr, size_t &n, char *input_file)
 	return;
 }
 
-void PrintArray(std::vector<float> &arr, size_t &n, char *output_file)
+void PrintArray(std::vector<long long> &arr, size_t &n, char *output_file)
 {
 	std::ofstream out(output_file);
 
@@ -25,10 +25,10 @@ void PrintArray(std::vector<float> &arr, size_t &n, char *output_file)
 	out.close();
 	return;
 }
-int main(int argc, char *argv[])
+int main(int argc, char *argv[])	
 {
 	size_t n;
-	std::vector<float> arr;
+	std::vector<long long> arr;
 	ReadArray(arr, n, argv[1]);
 	try {
 		sort(arr.begin(), arr.end());
